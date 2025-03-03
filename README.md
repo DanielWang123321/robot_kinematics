@@ -26,7 +26,7 @@ A Python-based kinematics library for the xArm 6 robotic arm, including both for
     ```
 3. Install the dependencies:
     ```bash
-    pip install -r requirements.txt
+    pip install numpy
     ```
 
 ## Usage
