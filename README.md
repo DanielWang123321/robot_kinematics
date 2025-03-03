@@ -1,18 +1,17 @@
 # robot_kinematics
 
-A Python-based kinematics library for the xArm 6 robotic arm, including both forward and inverse kinematics algorithms. This project has been validated on the xArm 6, aiming to provide an easy-to-use and extensible kinematics solution.
+A Python-based kinematics library for the xArm 6 robotic arm, implementing forward kinematics algorithms. This project has been validated on the xArm 6, aiming to provide an easy-to-use and extensible kinematics solution.
 
 ## Features
 
 - **Forward Kinematics**: Compute the end-effector pose from given joint angles.
-- **Inverse Kinematics**: Calculate the necessary joint angles to achieve a desired end-effector pose.
 - Verified on the xArm 6 robotic arm.
 - Clean, modular code for easy modification and expansion.
 
 ## Requirements
 
 - Python 3.x
-- Refer to [requirements.txt](./requirements.txt) for necessary dependencies.
+- NumPy library
 
 ## Installation
 
