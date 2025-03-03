@@ -1,16 +1,16 @@
 import numpy as np
 
 # Joint limits in radians
-joint_limits = [
-    [-2.0944, 2.0944],   # Joint 1: ±120°
-    [-2.0944, 2.0944],   # Joint 2: ±120°
-    [-2.0944, 2.0944],   # Joint 3: ±120°
-    [-3.1416, 3.1416],   # Joint 4: ±180°
-    [-2.0944, 2.0944],   # Joint 5: ±120°
-    [-3.1416, 3.1416]    # Joint 6: ±180°
-]
+joint_limits = {
+    "joint1": [-2 * np.pi, 2 * np.pi],
+    "joint2": [-2.059488, 2.094395],
+    "joint3": [-3.927231, 0.191986],
+    "joint4": [-2 * np.pi, 2 * np.pi],
+    "joint5": [-1.692969, np.pi],
+    "joint6": [-2 * np.pi, 2 * np.pi],
+}
 
-# 计算 Denavit-Hartenberg 变换矩阵
+# Calculate Denavit-Hartenberg transformation matrix
 def dh_transform(alpha, a, d, theta):
     return np.array([
         [np.cos(theta), -np.sin(theta), 0, a],
@@ -19,7 +19,7 @@ def dh_transform(alpha, a, d, theta):
         [0, 0, 0, 1]
     ])
 
-# xArm 6 MDH 参数
+# xArm 6 MDH parameters
 a2 = np.sqrt(284.5**2 + 53.5**2)  # 289.48866 mm
 T2_offset = -np.arctan(284.5 / 53.5)  # -1.3849179 rad
 T3_offset = -T2_offset  # 1.3849179 rad
