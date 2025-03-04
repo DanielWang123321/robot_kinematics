@@ -9,7 +9,7 @@ def load_kinematics_params(yaml_file):
     return params
 
 # Load parameters from YAML file
-kin_params = load_kinematics_params('x6_kin.yaml')
+kin_params = load_kinematics_params('x6_kine_para.yaml')
 
 # Extract joint limits and DH parameters
 joint_limits = kin_params['joint_limits']
