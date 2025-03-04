@@ -32,12 +32,6 @@ A Python-based kinematics library for the xArm 6 robotic arm, implementing forwa
 
 ### Forward Kinematics
 
-Use the functions in `forward_kinematics.py` to compute the end-effector pose from the joint angles.
+Use the functions in `x6_fk.py` to compute the end-effector pose from the joint angles.
 
-```python
-from forward_kinematics import forward_kinematics
-
-# Example: Define a list of joint angles
-joint_angles = [0, 0.5, 1.0, -0.5, 0.3, 0.1]
-pose = forward_kinematics(joint_angles)
-print("End-effector pose:", pose)
+Use the functions in `x6_ik.py` to compute the joint angles of target TCP pose.

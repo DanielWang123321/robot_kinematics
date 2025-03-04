@@ -1,0 +1,38 @@
+# xArm 6 Kinematics Parameters
+
+# Robot parameters
+robot:
+  name: "xArm 6"
+  dof: 6
+
+# Joint limits in radians
+joint_limits:
+  joint1: [-6.28318530718, 6.28318530718]  # [-2*pi, 2*pi]
+  joint2: [-2.059488, 2.094395]
+  joint3: [-3.927231, 0.191986]
+  joint4: [-6.28318530718, 6.28318530718]  # [-2*pi, 2*pi]
+  joint5: [-1.692969, 3.14159265359]  # [-1.692969, pi]
+  joint6: [-6.28318530718, 6.28318530718]  # [-2*pi, 2*pi]
+
+# Derived parameters
+derived_params:
+  a2: 289.48866  # sqrt(284.5^2 + 53.5^2) mm
+  T2_offset: -1.3849179  # -arctan(284.5/53.5) rad
+  T3_offset: 1.3849179   # -T2_offset rad
+
+# MDH Parameter Table: [alpha, a, d, theta_offset]
+dh_params:
+  joint1: [0.000000, 0.000000, 267.000, 0.000000]
+  joint2: [-1.570796, 0.000000, 0.000000, -1.3849179]  # -pi/2, T2_offset
+  joint3: [0.000000, 289.48866, 0.000000, 1.3849179]   # a2, T3_offset
+  joint4: [-1.570796, 77.500, 342.500, 0.000000]       # -pi/2
+  joint5: [1.570796, 0.000000, 0.000000, 0.000000]     # pi/2
+  joint6: [-1.570796, 76.000, 97.000, 0.000000]        # -pi/2
+
+# Tool Coordinate System (TCP) Transformation
+tool:
+  # Identity matrix by default, adjust if needed
+  transform: [[1, 0, 0, 0], 
+              [0, 1, 0, 0], 
+              [0, 0, 1, 0], 
+              [0, 0, 0, 1]]
