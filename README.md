@@ -1,37 +1,85 @@
-# robot_kinematics
+# Robot Kinematics - UFACTORY xArm 6
 
-A Python-based kinematics library for the xArm 6 robotic arm, implementing forward kinematics algorithms. This project has been validated on the xArm 6, aiming to provide an easy-to-use and extensible kinematics solution.
+This repository contains Python implementations of forward and inverse kinematics calculations for the UFACTORY xArm 6 robotic arm. It provides accurate and efficient functions for computing end-effector positions and joint angles.
 
-## Features
+## Compatibility
 
-- **Forward Kinematics**: Compute the end-effector pose from given joint angles.
-- Verified on the xArm 6 robotic arm.
-- Clean, modular code for easy modification and expansion.
-
-## Requirements
-
-- Python 3.x
-- NumPy library
+- Robot: UFACTORY xArm 6
+- Python Version: 3.8 - 3.13
 
 ## Installation
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/DanielWang123321/robot_kinematics.git
-    ```
-2. Change into the project directory:
-    ```bash
-    cd robot_kinematics
-    ```
-3. Install the dependencies:
-    ```bash
-    pip install numpy
-    ```
+```bash
+git clone https://github.com/DanielWang123321/robot_kinematics.git
+cd robot_kinematics
+```
 
-## Usage
+2. Install dependencies:
+```bash
+pip install numpy scipy pyyaml
+```
+
+## API Documentation
 
 ### Forward Kinematics
 
-Use the functions in `x6_fk.py` to compute the end-effector pose from the joint angles.
+```python
+x6_get_fk(angles, input_is_radian=False, output_is_radian=False)
+```
 
-Use the functions in `x6_ik.py` to compute the joint angles of target TCP pose.
+Calculates the forward kinematics for xArm 6.
+
+**Parameters:**
+- `angles`: List of 6 joint angles
+- `input_is_radian`: If True, input angles are in radians; if False, in degrees
+- `output_is_radian`: If True, output orientation is in radians; if False, in degrees
+
+**Returns:**
+- List of [x, y, z, roll, pitch, yaw] representing TCP pose
+
+### Inverse Kinematics
+
+```python
+x6_get_ik(pose, input_is_radian=False, output_is_radian=False)
+```
+
+Calculates the inverse kinematics for xArm 6.
+
+**Parameters:**
+- `pose`: List of [x, y, z, roll, pitch, yaw] representing TCP pose
+- `input_is_radian`: If True, input orientation is in radians; if False, in degrees
+- `output_is_radian`: If True, output joint angles are in radians; if False, in degrees
+
+**Returns:**
+- List of 6 joint angles
+
+## Usage Example
+
+The repository includes an example script (`x6_kine_example.py`) demonstrating both forward and inverse kinematics calculations:
+
+```python
+from x6_kinematics import x6_get_fk, x6_get_ik
+import numpy as np
+
+# Example 1: Forward Kinematics
+joint_angles = [-6.4, 28, -37.3, -0.5, 7.1, -69]  # degrees
+tcp_pose = x6_get_fk(joint_angles, input_is_radian=False, output_is_radian=False)
+print("TCP pose [x, y, z, roll, pitch, yaw]:", tcp_pose)
+
+# Example 2: Inverse Kinematics
+tcp_pose = [251.2, 0, 112, 180, 0, 0]  # [mm, mm, mm, deg, deg, deg]
+joint_angles = x6_get_ik(tcp_pose, input_is_radian=False, output_is_radian=False)
+print("Joint angles:", joint_angles)
+```
+
+To run the example:
+```bash
+python x6_kine_example.py
+```
+
+## File Structure
+
+- `x6_kine_para.yaml`: Robot parameters including MDH parameters and joint constraints
+- `x6_kinematics.py`: Core kinematics calculations (forward/inverse kinematics)
+- `x6_kine_example.py`: Usage examples
